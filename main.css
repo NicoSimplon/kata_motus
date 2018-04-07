@@ -1,0 +1,32 @@
+body, html {
+	margin: 0;
+	background-color: skyblue;
+}
+
+.center {
+	text-align: center;
+	background-color: deepskyblue;
+	color: blue;
+	margin: 50px;
+	padding: 100px;
+}
+
+#affichage {
+	background-color: skyblue;
+	text-align: center;
+}
+
+.green {
+	color: green;
+	font-size: 20pt;
+}
+
+.red {
+	color:  red;
+	font-size: 20pt;
+}
+
+.orange {
+	color: orange;
+	font-size:  20pt;
+}
