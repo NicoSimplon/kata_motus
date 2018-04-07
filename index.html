@@ -10,15 +10,25 @@
 <body>
 	<div class="center">
 		<h1>Motus</h1>
-		<h2>Vous devez trouver un mot de <strong>huit lettres</strong>. Vous n'avez que 7 chances. Les réponses doivent être écrites en minuscules.</h2>
+		<h2>Vous devez trouver un mot de <strong>huit lettres</strong>. Vous n'avez que 7 chances. Les réponses doivent être écrites en minuscules et ne pas comporter plus de 8 lettres. Les accents sont supportés mais pas les caractères spéciaux.</h2>
+		<div id="indice">
+			
+		</div>
 		<div id="affichage">
 			
 		</div>
+		
 		<br>
-		<input type="text" id="reponse" name="reponse" placeholder="Rentrez votre réponse ici">
-		<br>
+
+		<input id="reponse" type="text" name="reponse" placeholder="Votre réponse">
+		
+
 		<div id="boutons">
-			<input type="button" id="valider" name="valider" value="Valider">
+			<br>
+			<input type="button" id="valider" value="Valider">
+			<br>
+			<input id="rejouer" type="button" value="Rejouer">
+			<br>
 		</div>
 	</div>
 
@@ -27,8 +37,6 @@
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous">
 	</script>
-	<script type="text/javascript"
-		src="main.js">
-	</script>
+	<script src="main.js"></script>
 </body>
 </html>
