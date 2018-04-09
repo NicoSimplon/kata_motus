@@ -26,6 +26,10 @@ var arr = [
 	'xylocope',
 	'yearling',
 	'zinguant',
+	'admirées',
+	'briefées',
+	'chimères',
+	'déprimes',
 ]
 
 var recup;
@@ -69,9 +73,6 @@ function rejouer(){
 
 // Je lance la comparaison lors du click du bouton "Valider"
 $("#valider").click(function(){
-
-	chance--;
-	//console.log(chance);
 	
 	// Je récupère le mot rentré par le joueur dans l'input
 	// Et je transforme mes deux mots en array
@@ -79,7 +80,15 @@ $("#valider").click(function(){
 	recup = $("#reponse").val();
 	
 	var rep = recup.split("");
-	
+
+	if(rep.length != 8){
+		alert("Votre réponse ne comporte pas le bon nombre de lettres.");
+	}
+	else{
+		chance--;
+		//console.log(chance);
+	}
+
 	var alea = motRandom.split("");
 	
 	// console.log(rep);
