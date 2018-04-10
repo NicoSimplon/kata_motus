@@ -5,12 +5,19 @@ body, html {
 
 .center {
 	text-align: center;
-	background-color: deepskyblue;
 	color: #191970;
 	margin: 50px;
 	padding: 50px;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 	border-radius: 10px;
+}
+
+.colorDeep {
+	background-color: deepskyblue;
+}
+
+.size20 {
+	font-size: 20pt;
 }
 
 #affichage {
@@ -22,7 +29,6 @@ body, html {
 	text-align: center;
 	background-color: darkblue;
 	color: white;
-	font-size: 20pt;
 }
 
 .bouton {
@@ -46,26 +52,19 @@ body, html {
 }
 
 #reponse {
-	background-color: deepskyblue;
 	color: darkblue;
+	border: none;
 	border-bottom: 3px solid blue;
-	border-top: 3px solid deepskyblue;
-	border-left: 3px solid deepskyblue;
-	border-right: 3px solid deepskyblue;
-	font-size: 20pt;
 }
 
 .green {
-	color: green;
-	font-size: 20pt;
+	color: #00FF00;
 }
 
 .red {
 	color:  red;
-	font-size: 20pt;
 }
 
 .orange {
 	color: orange;
-	font-size: 20pt;
 }

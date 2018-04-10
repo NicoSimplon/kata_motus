@@ -30,7 +30,29 @@ var arr = [
 	'briefées',
 	'chimères',
 	'déprimes',
-]
+	'escrimes',
+	'fébriles',
+	'gencives',
+	'humiliés',
+	'incuries',
+	'journées',
+	'kouglofs',
+	'libellés',
+	'méprises',
+	'nébulisé',
+	'octobres',
+	'prémices',
+	'question',
+	'reprises',
+	'services',
+	'triplées',
+	'unilobée',
+	'vouchers',
+	'würmiens',
+	'xanthies',
+	'yogourts',
+	'zorilles',
+];
 
 var recup;
 
@@ -42,7 +64,7 @@ var motRandom = arr[numRandom];
 
 var alea = motRandom.split("");
 
-console.log(motRandom);
+//console.log(motRandom);
 
 // Ma variable permettant de limiter le nombre de chances du joueur
 var chance = 7;
@@ -55,7 +77,11 @@ $("#indice").html('<span>'+alea[0]+'.......</span>');
 function rejouer(){
 	$("#valider").hide();
 	$("#rejouer").show();
-	$("#rejouer").click(function(){
+}
+// J'ai sorti cet évènement de ma fonction rejouer car 
+//il était appelé plusieurs fois par le même clic
+
+$("#rejouer").click(function(){
 		chance = 7;
 		numRandom = Math.floor(Math.random()*arr.length);
 		motRandom = arr[numRandom];
@@ -64,12 +90,9 @@ function rejouer(){
 		$("#valider").show();
 		$("#affichage").text('');
 		$("#indice").html('<span>'+alea[0]+'.......</span>');
-
-		console.log(motRandom);
+		//console.log(motRandom);
 		//console.log(chance);
-	})
-	
-}
+})
 
 // Je lance la comparaison lors du click du bouton "Valider"
 $("#valider").click(function(){
@@ -80,6 +103,7 @@ $("#valider").click(function(){
 	recup = $("#reponse").val();
 	
 	var rep = recup.split("");
+	// console.log(rep);
 
 	if(rep.length != 8){
 		alert("Votre réponse ne comporte pas le bon nombre de lettres.");
@@ -88,11 +112,6 @@ $("#valider").click(function(){
 		chance--;
 		//console.log(chance);
 	}
-
-	var alea = motRandom.split("");
-	
-	// console.log(rep);
-	// console.log(alea);
 
 	// Je compare le mot du joueur et le mot sélectionné aléatoirement
 	// dans une boucle afin de les comparer lettre par lettre
@@ -106,30 +125,30 @@ $("#valider").click(function(){
 		
 			if(i === 7 && rep.length == 8){
 				if(rep[i] == alea[i]) {
-					$("#affichage").append('<span class="green">'+rep[i]+'</span><br>');
+					$("#affichage").append('<span class="green size20">'+rep[i]+'</span><br>');
 				}
 				else if(rep[i] != alea[i]){
 					var verif = alea.includes(rep[i]);
 					if(verif == true){
-						$("#affichage").append('<span class="orange">'+rep[i]+'</span><br>');
+						$("#affichage").append('<span class="orange size20">'+rep[i]+'</span><br>');
 					}
 					else{
-						$("#affichage").append('<span class="red">'+rep[i]+'</span><br>');
+						$("#affichage").append('<span class="red size20">'+rep[i]+'</span><br>');
 					}
 					
 				}
 			}
 			else if(i < 7 && rep.length == 8) {
 				if(rep[i] == alea[i]) {
-					$("#affichage").append('<span class="green">'+rep[i]+'</span>');
+					$("#affichage").append('<span class="green size20">'+rep[i]+'</span>');
 				}
 				else if(rep[i] != alea[i]){
 					var verif = alea.includes(rep[i]);
 					if(verif == true){
-						$("#affichage").append('<span class="orange">'+rep[i]+'</span>');
+						$("#affichage").append('<span class="orange size20">'+rep[i]+'</span>');
 					}
 					else{
-						$("#affichage").append('<span class="red">'+rep[i]+'</span>');
+						$("#affichage").append('<span class="red size20">'+rep[i]+'</span>');
 					}
 				}
 			}
@@ -143,15 +162,17 @@ $("#valider").click(function(){
 	$("#reponse").val("");
 
 	if(chance === 0 && recup != motRandom){
-		alert("Vous avez perdu! Le mot était: "+motRandom);
 		rejouer();
+		alert("Vous avez perdu! Le mot était: "+motRandom);
 	}
 	else if (chance >= 0 && recup == motRandom){
-		alert("Félicitations! Vous avez trouvé le bon mot: "+recup);
 		rejouer();
+		alert("Félicitations! Vous avez trouvé le bon mot: "+recup);
 	}
 
 });
+
+
 
 
 
