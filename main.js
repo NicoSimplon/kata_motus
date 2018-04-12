@@ -94,9 +94,7 @@ $("#rejouer").click(function(){
 		//console.log(chance);
 })
 
-// Je lance la comparaison lors du click du bouton "Valider"
-$("#valider").click(function(){
-	
+function motus(){	
 	// Je récupère le mot rentré par le joueur dans l'input
 	// Et je transforme mes deux mots en array
 
@@ -123,39 +121,36 @@ $("#valider").click(function(){
 		//Afin d'afficher le mot rentré par le joueur je rajoute un br 
 		// lorsque la comparaison porte sur la dernière lettre du mot
 		
-			if(i === 7 && rep.length == 8){
-				if(rep[i] == alea[i]) {
-					$("#affichage").append('<span class="green size20">'+rep[i]+'</span><br>');
+		if(i === 7 && rep.length == 8){
+			if(rep[i] == alea[i]) {
+				$("#affichage").append('<span class="green size20">'+rep[i]+'</span><br>');
+			}	
+			else if(rep[i] != alea[i]){
+				var verif = alea.includes(rep[i]);
+				if(verif == true){
+					$("#affichage").append('<span class="orange size20">'+rep[i]+'</span><br>');
 				}
-				else if(rep[i] != alea[i]){
-					var verif = alea.includes(rep[i]);
-					if(verif == true){
-						$("#affichage").append('<span class="orange size20">'+rep[i]+'</span><br>');
-					}
-					else{
-						$("#affichage").append('<span class="red size20">'+rep[i]+'</span><br>');
-					}
-					
+				else{
+					$("#affichage").append('<span class="red size20">'+rep[i]+'</span><br>');
+				}	
+			}
+		}
+		else if(i < 7 && rep.length == 8) {
+			if(rep[i] == alea[i]) {
+				$("#affichage").append('<span class="green size20">'+rep[i]+'</span>');
+			}
+			else if(rep[i] != alea[i]){
+				var verif = alea.includes(rep[i]);
+				if(verif == true){
+					$("#affichage").append('<span class="orange size20">'+rep[i]+'</span>');
+				}
+				else{
+					$("#affichage").append('<span class="red size20">'+rep[i]+'</span>');
 				}
 			}
-			else if(i < 7 && rep.length == 8) {
-				if(rep[i] == alea[i]) {
-					$("#affichage").append('<span class="green size20">'+rep[i]+'</span>');
-				}
-				else if(rep[i] != alea[i]){
-					var verif = alea.includes(rep[i]);
-					if(verif == true){
-						$("#affichage").append('<span class="orange size20">'+rep[i]+'</span>');
-					}
-					else{
-						$("#affichage").append('<span class="red size20">'+rep[i]+'</span>');
-					}
-				}
-			}
-
-			// J'incrémente mon itérateur
-			i++;
-
+		}
+		// J'incrémente mon itérateur
+		i++;
 	}
 	
 	// Je vide le champs où le joueur rentre sa réponse	
@@ -170,9 +165,19 @@ $("#valider").click(function(){
 		alert("Félicitations! Vous avez trouvé le bon mot: "+recup);
 	}
 
-});
+};
 
-
-
-
-
+$(document).ready(function() {
+    // Je lance la comparaison lors du click du bouton "Valider"
+	$("#valider").click(function(){
+        recup = $("#reponse").val();
+        motus(recup);
+    })
+    //En appuyant su la touche entrée on peut fégalement validersa réponse
+    $("#reponse").keypress(function(e) {
+        if (e.keyCode == 13) {
+            recup = $("#reponse").val();
+        	motus(recup);
+        }
+    });
+})
