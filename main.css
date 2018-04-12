@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Hi+Melody|Roboto+Mono');
+
 body, html {
 	margin: 0;
 	background-color: skyblue;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .center {
@@ -58,7 +61,7 @@ body, html {
 }
 
 .green {
-	color: #00FF00;
+	color: green;
 }
 
 .red {
