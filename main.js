@@ -127,7 +127,7 @@ function motus(){
 			}	
 			else if(rep[i] != alea[i]){
 				var verif = alea.includes(rep[i]);
-				if(verif == true){
+				if(verif){
 					$("#affichage").append('<span class="orange size20">'+rep[i]+'</span><br>');
 				}
 				else{
@@ -141,7 +141,7 @@ function motus(){
 			}
 			else if(rep[i] != alea[i]){
 				var verif = alea.includes(rep[i]);
-				if(verif == true){
+				if(verif){
 					$("#affichage").append('<span class="orange size20">'+rep[i]+'</span>');
 				}
 				else{
