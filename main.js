@@ -273,7 +273,7 @@ function timer(){
 			s--;
 		}
 		else if(s<=9){
-			$("#s").html('0'+s);
+			$("#s").html("0"+s);
 			$("#m").html(m);
 			s--;
 		}	
@@ -300,7 +300,7 @@ function timer(){
 // fonction arrêtant le timer
 function clearTimer(){
 	clearInterval(time);
-	$("#s").html('00');
+	$("#s").html("00");
 	$("#m").html(0);
 }
 
