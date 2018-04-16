@@ -1,7 +1,11 @@
+var recup;
 var time;
 var m = 4;
 var s = 30;
 var fin = false;
+var perdu = new Audio('sons/perdu.mp3');
+var gagne = new Audio('sons/gagne.mp3');
+var perdue = new Audio('sons/perdue.mp3');
 
 // liste des mots
 var arr = [
@@ -57,9 +61,79 @@ var arr = [
 	'xanthies',
 	'yogourts',
 	'zorilles',
+	'implosât',
+	'foulasse',
+	'duperait',
+	'aztèques',
+	'titubiez',
+	'soutenir',
+	'regorgez',
+	'trémulât',
+	'stations',
+	'éludasse',
+	'patineur',
+	'suçotant',
+	'moniteur',
+	'converse',
+	'égalisât',
+	'haïssais',
+	'roterons',
+	'insinuez',
+	'fongique',
+	'avancent',
+	'précisés',
+	'bichonna',
+	'encodent',
+	'galopant',
+	'démontre',
+	'relirons',
+	'sinécure',
+	'bombâmes',
+	'révélait',
+	'craquent',
+	'pomponné',
+	'appairât',
+	'pisseuse',
+	'zodiacal',
+	'écroulée',
+	'trahisse',
+	'déglutie',
+	'calibrez',
+	'incombât',
+	'chahutez',
+	'cyanoser',
+	'galopiez',
+	'sécrétés',
+	'déclinât',
+	'déversée',
+	'relaxait',
+	'brûlerez',
+	'veillées',
+	'colonisé',
+	'habituer',
+	'décrépis',
+	'égarâmes',
+	'amicales',
+	'rigoleur',
+	'procéder',
+	'dénoncer',
+	'vêtirons',
+	'dessoudé',
+	'brûlages',
+	'cajoliez',
+	'redoutes',
+	'torsadas',
+	'recharge',
+	'affligée',
+	'biphasée',
+	'employât',
+	'vrillais',
+	'fouettât',
+	'tanisées',
+	'somnolas',
+	'excédées',
+	'bourrage',
 ];
-
-var recup;
 
 // Je sélectionne un mot aléatoire dans ma liste et je le stocke dans 
 // ma variable motRandom
@@ -91,7 +165,14 @@ $("#rejouer").click(function(){
 		numRandom = Math.floor(Math.random()*arr.length);
 		motRandom = arr[numRandom];
 		alea = motRandom.split("");
+		
 		timer();
+		
+		gagne.pause();
+		gagne.currentTime = 0;
+		perdu.pause();
+		perdu.currentTime = 0;
+		
 		$("#rejouer").hide();
 		$("#valider").show();
 		$("#affichage").text('');
@@ -162,17 +243,66 @@ function motus(){
 	// Je vide le champs où le joueur rentre sa réponse	
 	$("#reponse").val("");
 
-	if(chance === 0 && recup != motRandom){
-		rejouer();
-		alert("Vous avez perdu! Le mot était: "+motRandom);
+	if(chance >= 0 && recup != motRandom){
+		if(chance === 0 && recup != motRandom){
+			rejouer();
+			perdue.play();
+			clearTimer();
+			alert("Vous avez perdu! Le mot était: "+motRandom);
+		}
+		else{
+			perdu.play();
+		}
 	}
 	else if (chance >= 0 && recup == motRandom){
 		rejouer();
 		clearTimer();
+		gagne.play();
 		alert("Félicitations! Vous avez trouvé le bon mot: "+recup);
 	}
 
 };
+
+// timer
+function timer(){
+	
+	time = setInterval(function () {
+		if(s > 9){
+			$("#s").html(s);
+			$("#m").html(m);
+			s--;
+		}
+		else if(s<=9){
+			$("#s").html('0'+s);
+			$("#m").html(m);
+			s--;
+		}	
+			//console.log("seconde:", s);
+	        if (s < 0) {
+	            m--;
+	            s = 59;
+	            //console.log("minute:", m);
+	        }
+	        // condition mettant fin à l'intervalle
+	        if(m<0){
+	            fin = true;
+	            clearTimer();
+	            rejouer();
+	            m = 4;
+	            s = 30;
+	            perdue.play();
+	            alert("Vous avez perdu! Le mot était: "+motRandom);
+	        }
+	}, 1000);
+
+}
+
+// fonction arrêtant le timer
+function clearTimer(){
+	clearInterval(time);
+	$("#s").html('00');
+	$("#m").html(0);
+}
 
 $(document).ready(function() {
 	// lancement du compte à rebour au chargement de la page
@@ -190,39 +320,3 @@ $(document).ready(function() {
         }
     });
 })
-
-// timer
-function timer(){
-	
-		time = setInterval(function () {
-
-			$("#s").html(s);
-			$("#m").html(m);
-			s--;
-			//console.log("seconde:", s);
-	            if (s < 0) {
-	                m--;
-	                s = 59;
-
-	             //console.log("minute:", m);
-	            }
-	            // condition mettant fin à l'intervalle
-	            if(m<0){
-	            	fin = true;
-	            	clearTimer();
-	            	rejouer();
-	            	m = 4;
-	            	s = 30;
-	            	alert("Vous avez perdu! Le mot était: "+motRandom);
-	            }
-
-		}, 1000);
-
-}
-
-// fonction arrêtant le timer
-function clearTimer(){
-	clearInterval(time);
-	$("#s").html(0);
-	$("#m").html(0);
-}
