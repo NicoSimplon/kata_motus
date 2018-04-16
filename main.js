@@ -1,3 +1,8 @@
+var time;
+var m = 4;
+var s = 30;
+var fin = false;
+
 // liste des mots
 var arr = [
 	'aboulant', 
@@ -86,6 +91,7 @@ $("#rejouer").click(function(){
 		numRandom = Math.floor(Math.random()*arr.length);
 		motRandom = arr[numRandom];
 		alea = motRandom.split("");
+		timer();
 		$("#rejouer").hide();
 		$("#valider").show();
 		$("#affichage").text('');
@@ -162,12 +168,15 @@ function motus(){
 	}
 	else if (chance >= 0 && recup == motRandom){
 		rejouer();
+		clearTimer();
 		alert("Félicitations! Vous avez trouvé le bon mot: "+recup);
 	}
 
 };
 
 $(document).ready(function() {
+	// lancement du compte à rebour au chargement de la page
+	timer();
     // Je lance la comparaison lors du click du bouton "Valider"
 	$("#valider").click(function(){
         recup = $("#reponse").val();
@@ -181,3 +190,39 @@ $(document).ready(function() {
         }
     });
 })
+
+// timer
+function timer(){
+	
+		time = setInterval(function () {
+
+			$("#s").html(s);
+			$("#m").html(m);
+			s--;
+			//console.log("seconde:", s);
+	            if (s < 0) {
+	                m--;
+	                s = 59;
+
+	             //console.log("minute:", m);
+	            }
+	            // condition mettant fin à l'intervalle
+	            if(m<0){
+	            	fin = true;
+	            	clearTimer();
+	            	rejouer();
+	            	m = 4;
+	            	s = 30;
+	            	alert("Vous avez perdu! Le mot était: "+motRandom);
+	            }
+
+		}, 1000);
+
+}
+
+// fonction arrêtant le timer
+function clearTimer(){
+	clearInterval(time);
+	$("#s").html(0);
+	$("#m").html(0);
+}
