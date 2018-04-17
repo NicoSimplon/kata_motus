@@ -314,9 +314,11 @@ $(document).ready(function() {
     })
     //En appuyant su la touche entrée on peut fégalement validersa réponse
     $("#reponse").keypress(function(e) {
-        if (e.keyCode == 13) {
+    	console.log(e);
+        if (e.key == "Enter") {
             recup = $("#reponse").val();
         	motus(recup);
+
         }
     });
 })
