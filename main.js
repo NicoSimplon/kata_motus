@@ -1,3 +1,4 @@
+var verif;
 var recup;
 var time;
 var m = 4;
@@ -165,7 +166,8 @@ $("#rejouer").click(function(){
 		numRandom = Math.floor(Math.random()*arr.length);
 		motRandom = arr[numRandom];
 		alea = motRandom.split("");
-		
+		m = 4;
+	    s = 30;
 		timer();
 		
 		gagne.pause();
@@ -179,7 +181,7 @@ $("#rejouer").click(function(){
 		$("#indice").html('<span>'+alea[0]+'.......</span>');
 		//console.log(motRandom);
 		//console.log(chance);
-})
+});
 
 function motus(){	
 	// Je récupère le mot rentré par le joueur dans l'input
@@ -213,7 +215,7 @@ function motus(){
 				$("#affichage").append('<span class="green size20">'+rep[i]+'</span><br>');
 			}	
 			else if(rep[i] != alea[i]){
-				var verif = alea.includes(rep[i]);
+				verif = alea.includes(rep[i]);
 				if(verif){
 					$("#affichage").append('<span class="orange size20">'+rep[i]+'</span><br>');
 				}
@@ -227,7 +229,7 @@ function motus(){
 				$("#affichage").append('<span class="green size20">'+rep[i]+'</span>');
 			}
 			else if(rep[i] != alea[i]){
-				var verif = alea.includes(rep[i]);
+				verif = alea.includes(rep[i]);
 				if(verif){
 					$("#affichage").append('<span class="orange size20">'+rep[i]+'</span>');
 				}
@@ -261,7 +263,7 @@ function motus(){
 		alert("Félicitations! Vous avez trouvé le bon mot: "+recup);
 	}
 
-};
+}
 
 // timer
 function timer(){
@@ -311,14 +313,13 @@ $(document).ready(function() {
 	$("#valider").click(function(){
         recup = $("#reponse").val();
         motus(recup);
-    })
+    });
     //En appuyant su la touche entrée on peut fégalement validersa réponse
     $("#reponse").keypress(function(e) {
-    	console.log(e);
         if (e.key == "Enter") {
             recup = $("#reponse").val();
         	motus(recup);
 
         }
     });
-})
+});
